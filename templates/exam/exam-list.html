@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>考试列表</title>
+</head>
+<body>
+<a href="{% url 'index' %}">首页</a>
+<table class="table">
+    {% if data_list %}
+        {% for exam in data_list %}
+            <p><a href={% url 'exam:exam-details' exam.id %}>{{ exam.exam_name }}</a></p>
+        {% endfor %}
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">时间</th>
+            <th scope="col">考试</th>
+            <th scope="col">备注</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for exam in data_list %}
+            <tr>
+                <th scope="row">{{ exam.id }}</th>
+                <td>{{ exam.exam_date }}</td>
+                <td onclick="window.open('http://www.baidu.com');">{{ exam.exam_name }}</td>
+                <td>{{ exam.remark }}</td>
+                {#            <button type="button" class="btn btn-link">Link</button>#}
+            </tr>
+        {% endfor %}
+    {% else %}
+        <a>没有数据</a>
+    {% endif %}
+    </tbody>
+</table>
+</body>
+</html>
