@@ -32,6 +32,7 @@ class ExamModel(BaseModel):
 class ScoresModel(BaseModel):
     score_num = models.CharField(max_length=64, verbose_name='考号')
     student = models.ForeignKey(StudentModel, on_delete=models.DO_NOTHING)
+    grade = models.ForeignKey(GradeClassModel, on_delete=models.DO_NOTHING)
     exam = models.ForeignKey(ExamModel, on_delete=models.DO_NOTHING)
 
     ranking = models.IntegerField(verbose_name="名次", default=0)
@@ -62,3 +63,4 @@ class ScoresModel(BaseModel):
 
     def __str__(self):
         return '{}-{}'.format(self.exam, self.student)
+

@@ -11,7 +11,7 @@ class SchoolAdmin(admin.ModelAdmin):
 
 @admin.register(GradeClassModel)
 class GradeClassAdmin(admin.ModelAdmin):
-    list_display = ('s_grade', 's_class', 'cnt', 'create_time',)
+    list_display = ('get_name', 'cnt', 'create_time',)
     list_filter = ('s_grade',)
     ordering = ('s_grade', 's_class')
 

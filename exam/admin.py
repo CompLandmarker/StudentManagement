@@ -6,9 +6,9 @@ from .models import ExamModel, ScoresModel
 
 @admin.register(ExamModel)
 class ExamAdmin(admin.ModelAdmin):
-    list_display = ('date', 'name', 'create_time', 'remark')
+    list_display = ('date', 'name', 'remark', 'mod_time', 'create_time')
     list_display_links = ('remark', 'name',)
-    ordering = ['-date']
+    ordering = ['date']
 
 
 def get_student_name(obj):
@@ -18,12 +18,11 @@ def get_student_name(obj):
 # 'student.in_class',
 class ScoreAdmin(admin.ModelAdmin):
     list_display = (
-        'exam', 'score_num', 'student_name', 'chinese', 'math', 'english', 'politics',
-        'biology',
-        'history', 'geography', 'score_sum', 'create_time',
+        'exam', 'score_num', 'student_name', 'grade', 'chinese', 'math', 'english', 'politics',
+        'biology', 'history', 'geography', 'score_sum',
     )
-    ordering = ['-exam', '-score_sum', ]
-    list_filter = ('exam',)
+    ordering = ['-exam', '-score_sum', '-chinese', '-math', '-english', ]
+    list_filter = ['exam', ]
     search_fields = ('student_name', 'chinese', 'math', 'english')
 
     def student_name(self, obj):

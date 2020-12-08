@@ -33,10 +33,11 @@ class GradeClassModel(BaseModel):
         verbose_name_plural = "班级信息表"
 
     def __str__(self):
-        return '{}年级{}班'.format(self.s_grade, self.s_class)
+        return '{},{}'.format(self.s_grade, self.s_class)
 
     def get_name(self):
-        return '{}年级{}班'.format(self.s_grade, self.s_class)
+        map_font = {1: '一', 7: '七', 8: '八', 9: '九', }
+        return '{}年级{}班'.format(map_font[self.s_grade], self.s_class)
 
 
 class StudentModel(BaseModel):
