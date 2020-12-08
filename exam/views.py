@@ -72,9 +72,9 @@ def exam_details(request, pk):
         tmp_sum = get_sum_score(i)
         ScoresModel.objects.filter(id=i.id).update(sum_score=tmp_sum)
     data_list = ScoresModel.objects.filter(exam_id=pk).order_by(
-        '-sum_score', '-chinese', '-math', '-english')
+        '-score_sum', '-chinese', '-math', '-english')
     update_sort_index(data_list)
     data_list = ScoresModel.objects.filter(exam_id=pk).order_by(
-        '-sum_score', '-chinese', '-math', '-english')
+        '-score_sum', '-chinese', '-math', '-english')
     # print(data_list[0].score_num)
     return render(request, "exam/exam-details.html", {'data_list': data_list})

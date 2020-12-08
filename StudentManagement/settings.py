@@ -76,11 +76,11 @@ WSGI_APPLICATION = 'StudentManagement.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'student_management',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': '127.0.0.1',
+        'ENGINE': 'django.db.backends.sqlite3',
+         'NAME': os.path.join(BASE_DIR, 'studentManagement.sqlite3'),
+        # 'USER': 'root',
+        # 'PASSWORD': 'root',
+        # 'HOST': '127.0.0.1',
     }
 }
 

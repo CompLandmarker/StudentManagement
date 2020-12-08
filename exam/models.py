@@ -1,10 +1,13 @@
 from django.db import models
+from django.utils import timezone
 
 from student.models import StudentModel, GradeClassModel
 
 
+# Create your models here.
 class BaseModel(models.Model):
-    create_time = models.DateTimeField(auto_created=True, auto_now_add=True)
+    create_time = models.DateTimeField(verbose_name="创建时间", default=timezone.now)
+    mod_time = models.DateTimeField(verbose_name="修改时间", auto_now=True)
     is_delete = models.BooleanField(default=False)
 
     class Meta:
@@ -12,18 +15,18 @@ class BaseModel(models.Model):
 
 
 class ExamModel(BaseModel):
-    exam_date = models.DateField(verbose_name='考试时间')
-    exam_name = models.CharField(max_length=256, verbose_name='考试名称')
+    date = models.DateField(verbose_name='考试时间')
+    name = models.CharField(max_length=256, verbose_name='考试名称')
     remark = models.CharField(max_length=512, verbose_name='考试备注')
 
     class Meta:
         db_table = 'exam_table'
-        ordering = ['exam_date']
+        ordering = ['date']
         verbose_name = "考试信息表"
         verbose_name_plural = "考试信息表"
 
     def __str__(self):
-        return '{}({})'.format(self.exam_date, self.exam_name)
+        return '{}({})'.format(self.date, self.name)
 
 
 class ScoresModel(BaseModel):
@@ -31,8 +34,8 @@ class ScoresModel(BaseModel):
     student = models.ForeignKey(StudentModel, on_delete=models.DO_NOTHING)
     exam = models.ForeignKey(ExamModel, on_delete=models.DO_NOTHING)
 
-    sort_index = models.IntegerField(verbose_name="名次", default=0)
-    sum_score = models.SmallIntegerField(verbose_name="总分", help_text='总分', default=-1)
+    ranking = models.IntegerField(verbose_name="名次", default=0)
+    score_sum = models.SmallIntegerField(verbose_name="总分", help_text='总分', default=-1)
 
     chinese = models.SmallIntegerField(verbose_name='语文', help_text='语文', default=-1)
     math = models.SmallIntegerField(verbose_name='数学', help_text='数学', default=-1)

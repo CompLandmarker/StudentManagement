@@ -11,22 +11,22 @@ class SchoolAdmin(admin.ModelAdmin):
 
 @admin.register(GradeClassModel)
 class GradeClassAdmin(admin.ModelAdmin):
-    list_display = ('student_grade', 'student_class', 'student_cnt', 'create_time',)
-    list_filter = ('student_grade',)
-    ordering = ('student_grade', 'student_class')
+    list_display = ('s_grade', 's_class', 'cnt', 'create_time',)
+    list_filter = ('s_grade',)
+    ordering = ('s_grade', 's_class')
 
 
 @admin.register(StudentModel)
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ('student_uuid','student_name', 'in_class', 'create_time')
-    list_display_links = ('student_uuid',)
+    list_display = ('uuid','name', 'in_class', 'create_time')
+    list_display_links = ('uuid',)
 
-    ordering = ('in_class', 'student_uuid')
+    ordering = ('in_class', 'uuid')
 
 
 class StudentDetailsAdmin(admin.ModelAdmin):
-    list_display = ('student_uuid', 'gender', 'telephone', 'card_num', 'address',)
-    list_display_links = ('student_uuid',)
+    list_display = ('uuid', 'gender', 'telephone', 'card_num', 'address',)
+    list_display_links = ('uuid',)
 
 
 admin.site.register(StudentDetailsModel, StudentDetailsAdmin)
