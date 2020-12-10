@@ -20,6 +20,7 @@ class GradeClassAdmin(admin.ModelAdmin):
 class StudentAdmin(admin.ModelAdmin):
     list_display = ('uuid','name', 'in_class', 'create_time')
     list_display_links = ('uuid',)
+    list_filter = ['in_class',]
 
     ordering = ('in_class', 'uuid')
 

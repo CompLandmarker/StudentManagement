@@ -23,6 +23,6 @@ urlpatterns = [
     path('detail/<int:pk>', views.exam_details, name='exam-details'),
     path('sum/', views.cnt_score, name='待定'),
 
-    # path('', views.index),
+    path('ranking/', views.update_ranking),
     # path('excel_data/', admin.site.urls),
 ]

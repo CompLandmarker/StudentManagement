@@ -18,10 +18,10 @@ def get_student_name(obj):
 # 'student.in_class',
 class ScoreAdmin(admin.ModelAdmin):
     list_display = (
-        'exam', 'score_num', 'student_name', 'grade', 'chinese', 'math', 'english', 'politics',
+        'ranking', 'student_name', 'grade', 'chinese', 'math', 'english', 'politics',
         'biology', 'history', 'geography', 'score_sum',
     )
-    ordering = ['-exam', '-score_sum', '-chinese', '-math', '-english', ]
+    ordering = ['exam','ranking']
     list_filter = ['exam', ]
     search_fields = ('student_name', 'chinese', 'math', 'english')
 

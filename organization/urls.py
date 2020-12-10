@@ -18,6 +18,6 @@ from organization import views
 app_name = 'class'
 urlpatterns = [
     path('list/', views.list, name='class-list'),
+    path('test/', views.wqs),
     path('detail/<int:pk>', views.class_details, name='class-details'),
-    path('xiaoss/', views.wqs, name='wqs'),
 ]

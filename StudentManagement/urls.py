@@ -20,6 +20,7 @@ from organization import views as org_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', org_views.index, name='index'),
+    path('index/', org_views.index),
 
     path('student/', include('student.urls')),
     path('exam/', include('exam.urls')),

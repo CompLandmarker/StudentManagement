@@ -13,21 +13,16 @@
         {% endfor %}
         <thead>
         <tr>
-            <th scope="col">#</th>
             <th scope="col">时间</th>
             <th scope="col">考试</th>
-            <th scope="col">备注</th>
 
         </tr>
         </thead>
         <tbody>
         {% for exam in data_list %}
             <tr>
-                <th scope="row">{{ exam.id }}</th>
-                <td>{{ exam.exam_date }}</td>
-                <td onclick="window.open('http://www.baidu.com');">{{ exam.exam_name }}</td>
-                <td>{{ exam.remark }}</td>
-                {#            <button type="button" class="btn btn-link">Link</button>#}
+                <td>{{ exam.date }}</td>
+                <td>{{ exam.name }}</td>
             </tr>
         {% endfor %}
     {% else %}

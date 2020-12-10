@@ -15,47 +15,14 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">姓名</th>
-            <th scope="col">考号</th>
-            <th scope="col">班级</th>
 
-            <th scope="col">语文</th>
-            <th scope="col">数学</th>
-            <th scope="col">英语</th>
-
-
-            <th scope="col">政治</th>
-            <th scope="col">历史</th>
-            <th scope="col">地理</th>
-
-            <th scope="col">物理</th>
-            <th scope="col">化学</th>
-            <th scope="col">生物</th>
-
-            <th scope="col">总分</th>
         </tr>
         </thead>
         {% for i in data_list %}
             <tbody>
             <tr>
-                <th scope="row">{{ i.sort_index }}</th>
-                <td>{{ i.student.student_name }}</td>
-                <td>{{ i.score_num }}</td>
-                <td>{{ i.student.in_class }}</td>
+                <th scope="row">{{ i.name }}</th>
 
-                <td>{{ i.chinese }}</td>
-                <td>{{ i.math }}</td>
-                <td>{{ i.english }}</td>
-
-
-                <td>{{ i.politics }}</td>
-                <td>{{ i.history }}</td>
-                <td>{{ i.biology }}</td>
-
-                <td>{{ i.physics }}</td>
-                <td>{{ i.chemistry }}</td>
-                <td>{{ i.geography }}</td>
-
-                <td>{{ i.sum_score }}</td>
 
             </tbody>
         {% endfor %}

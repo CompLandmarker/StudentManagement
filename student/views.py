@@ -40,7 +40,7 @@ def excel_sheet(file_path):
 url = r"D:\QQChatNotes\807015872\FileRecv\20201018第一次月考.xls"
 url = r"D:\QQChatNotes\807015872\FileRecv\20201113期中考试成绩.xls"
 # url = r"D:\Documents\Workspaces\Excel\测试数据.xlsx"
-# url = r"D:\QQChatNotes\807015872\FileRecv\zhoulian.xlsx"
+url = r"D:\QQChatNotes\807015872\FileRecv\zhoulian.xlsx"
 DataFrame = excel_sheet(url)
 
 
@@ -61,17 +61,17 @@ def excel_data(request):
                  header[1]: '姓名',
                  header[2]: '班级',
 
-                 header[6]: '语文',
-                 header[15]: '数学',
-                 header[9]: '英语',
+                 header[5]: '语文',
+                 header[6]: '数学',
+                 header[7]: '英语',
 
                  # header[]: '物理',
                  # header[]: '化学',
-                 header[18]: '生物',
-
-                 header[12]: '政治',
-                 header[21]: '历史',
-                 header[24]: '地理',
+                 # header[18]: '生物',
+                 #
+                 # header[12]: '政治',
+                 # header[21]: '历史',
+                 # header[24]: '地理',
 
                  # header[2]: '体育',
 
@@ -95,10 +95,10 @@ def excel_data(request):
         chinese, math, english = table['语文'].iloc[i], table['数学'].iloc[i], table['英语'].iloc[i]
         biology, politics, history, geography = -1, -1, -1, -1
 
-        biology = table['生物'].iloc[i]
-        politics = table['政治'].iloc[i]
-        history = table['历史'].iloc[i]
-        geography = table['地理'].iloc[i]
+        # biology = table['生物'].iloc[i]
+        # politics = table['政治'].iloc[i]
+        # history = table['历史'].iloc[i]
+        # geography = table['地理'].iloc[i]
 
         get_grand = 7
         get_class = grand

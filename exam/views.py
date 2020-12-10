@@ -10,8 +10,7 @@ def index(request):
 
 
 def exam_list(request):
-    data_list = ExamModel.objects.order_by('exam_date')
-    print(data_list)
+    data_list = ExamModel.objects.order_by('date')
     return render(request, 'exam/exam-list.html', {'data_list': data_list})
 
 
@@ -61,9 +60,14 @@ def cnt_score(request):
     return HttpResponse("ok")
 
 
-def update_sort_index(score_objects):
-    for num, i in enumerate(score_objects):
-        ScoresModel.objects.filter(id=i.id).update(sort_index=num + 1)
+def update_ranking(request):
+    all_exam = ExamModel.objects.all()
+    for i in all_exam:
+        get_ranking = ScoresModel.objects.filter(exam__name=i.name).order_by('score_num', 'chinese', 'math', 'english')
+        for num, j in enumerate(get_ranking):
+            ScoresModel.objects.filter(exam=i, student=j.student).update(ranking=num+1)
+
+    return HttpResponse("成绩名次已更新")
 
 
 def exam_details(request, pk):
@@ -73,7 +77,7 @@ def exam_details(request, pk):
         ScoresModel.objects.filter(id=i.id).update(sum_score=tmp_sum)
     data_list = ScoresModel.objects.filter(exam_id=pk).order_by(
         '-score_sum', '-chinese', '-math', '-english')
-    update_sort_index(data_list)
+    # update_sort_index(data_list)
     data_list = ScoresModel.objects.filter(exam_id=pk).order_by(
         '-score_sum', '-chinese', '-math', '-english')
     # print(data_list[0].score_num)
