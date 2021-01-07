@@ -18,12 +18,12 @@ def get_student_name(obj):
 # 'student.in_class',
 class ScoreAdmin(admin.ModelAdmin):
     list_display = (
-        'ranking', 'student_name', 'grade', 'chinese', 'math', 'english', 'politics',
-        'biology', 'history', 'geography', 'score_sum',
+        'student_name', 'ranking', 'grade', 'chinese', 'math', 'english', 'politics', 'biology', 'history', 'geography',
+        'total_score',
     )
-    ordering = ['exam','ranking']
+    ordering = ['exam', 'ranking']
     list_filter = ['exam', ]
-    search_fields = ('student_name', 'chinese', 'math', 'english')
+    search_fields = ('student', 'chinese', 'math', 'english')
 
     def student_name(self, obj):
         return obj.student.name

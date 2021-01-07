@@ -1,33 +1,32 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
 
-import pandas as pd
-import os
-from student.models import StudentModel, GradeClassModel
-from exam.models import ScoresModel, ExamModel
+"""
 
+# @Time    : 2020/12/23 22:22
+# @Author  : Shyazhut.ZT
+# @File    : add
+# @Project : StudentManagement
 
-def index(request):
-    return HttpResponse("index")
-
-
-def get_sum_score(scores_list):
-    sum_score = 0
-    for i in scores_list:
-        if i <= 0:
-            continue
-        sum_score += i
-
-    return sum_score
+"""
 
 
+# BigBuddy
 
+def excel_sheet(file_path):
+    """
+    读取excel文件的所有工作簿
+    :param file_path: excel路径
+    :return: 返回pandas的数据帧
+    """
+    f = pd.ExcelFile(url)
 
-url = r"D:\QQChatNotes\807015872\FileRecv\20201018第一次月考.xls"
-# url = r"D:\QQChatNotes\807015872\FileRecv\20201113期中考试成绩.xls"
-# url = r"D:\Documents\Workspaces\Excel\测试数据.xlsx"
-# url = r"D:\QQChatNotes\807015872\FileRecv\zhoulian.xlsx"
-DataFrame = excel_sheet(url)
+    data = pd.DataFrame()
+    for i in f.sheet_names:
+        d = pd.read_excel(url, sheet_name=i)
+        data = pd.concat([data, d])
+
+    return data
 
 
 def excel_data(request):
@@ -183,11 +182,3 @@ def excel_data(request):
     print("名次排序完成")
 
     return HttpResponse("ok")
-
-
-def student_list(request):
-    return HttpResponse("学生列表")
-
-
-def details(request, pk):
-    return HttpResponse("详情表{}".format(pk))

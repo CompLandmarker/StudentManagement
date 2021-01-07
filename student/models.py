@@ -16,7 +16,7 @@ class SchoolModel(BaseModel):
 
     class Meta:
         verbose_name = "学校信息表"
-        verbose_name_plural = "学校信息表"
+        verbose_name_plural = verbose_name
 
     def __str__(self):
         return self.name
@@ -30,7 +30,7 @@ class GradeClassModel(BaseModel):
     class Meta:
         ordering = ['s_grade', 's_class']
         verbose_name = "班级信息表"
-        verbose_name_plural = "班级信息表"
+        verbose_name_plural = verbose_name
 
     def __str__(self):
         map_font = {1: '一', 7: '七', 8: '八', 9: '九', }
@@ -56,7 +56,7 @@ class StudentModel(BaseModel):
     class Meta:
         ordering = ['uuid']
         verbose_name = "学生信息表"
-        verbose_name_plural = "学生信息表"
+        verbose_name_plural = verbose_name
 
     def __str__(self):
         return '{} - {}'.format(self.name, self.in_class)
@@ -78,7 +78,7 @@ class StudentDetailsModel(BaseModel):
     class Meta:
         ordering = ['uuid']
         verbose_name = "学生详情表"
-        verbose_name_plural = "学生详情表"
+        verbose_name_plural = verbose_name
 
     def __str__(self):
         return '{}({})'.format(self.uuid.name, self.uuid)

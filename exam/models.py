@@ -4,7 +4,6 @@ from django.utils import timezone
 from student.models import StudentModel, GradeClassModel
 
 
-# Create your models here.
 class BaseModel(models.Model):
     create_time = models.DateTimeField(verbose_name="创建时间", default=timezone.now)
     mod_time = models.DateTimeField(verbose_name="修改时间", auto_now=True)
@@ -18,12 +17,12 @@ class ExamModel(BaseModel):
     date = models.DateField(verbose_name='考试时间')
     name = models.CharField(max_length=256, verbose_name='考试名称')
     remark = models.CharField(max_length=512, verbose_name='考试备注')
-    file_path = models.FilePathField(verbose_name="文件路径", allow_folders=True, default='-1')
+    file_path = models.CharField(verbose_name="文件路径", max_length=256, default='-1')
 
     class Meta:
         ordering = ['date']
         verbose_name = "考试信息表"
-        verbose_name_plural = "考试信息表"
+        verbose_name_plural = verbose_name
 
     def __str__(self):
         return '{}({})'.format(self.date, self.name)
@@ -35,7 +34,7 @@ class ScoresModel(BaseModel):
     grade = models.ForeignKey(GradeClassModel, on_delete=models.DO_NOTHING)
     exam = models.ForeignKey(ExamModel, on_delete=models.DO_NOTHING)
 
-    ranking = models.IntegerField(verbose_name="名次", default=0)
+    ranking = models.IntegerField(verbose_name="名次", default=-1)
     total_score = models.SmallIntegerField(verbose_name="总分", help_text='总分', default=-1)
 
     chinese = models.SmallIntegerField(verbose_name='语文', help_text='语文', default=-1)
@@ -58,7 +57,7 @@ class ScoresModel(BaseModel):
     class Meta:
         ordering = ['exam']
         verbose_name = "成绩信息表"
-        verbose_name_plural = "成绩信息表"
+        verbose_name_plural = verbose_name
 
     def __str__(self):
         return '{}({})'.format(self.exam, self.student)
