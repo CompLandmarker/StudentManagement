@@ -21,7 +21,8 @@ urlpatterns = [
 
     path('add_data/', views.excel_data, name='add-data'),
     path('list/', views.student_list, name='student-list'),
-    # path('details/<pk:int>', views.details, name='exam-details'),
+
+    path('details/<int:pk>', views.details, name='student-details'),
     # path()
 
 ]

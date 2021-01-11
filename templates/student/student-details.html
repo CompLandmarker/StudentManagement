@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <meta charset="UTF-8">
+    <title>学生详情信息</title>
+</head>
+<body>
+{{ ranking_infos }}
+{{ exam_infos }}
+{#<div style="width: 60%">#}
+    <canvas id="myChart" width="200" height="300"></canvas>
+{#</div>#}
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: {{ exam_infos }},
+            datasets: [{
+                label: '分数',
+                data: {{ ranking_infos }},
+                backgroundColor: [],
+                borderColor: [],
+                borderWidth: 3
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

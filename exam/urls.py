@@ -23,6 +23,8 @@ urlpatterns = [
     path('detail/<int:pk>', views.exam_details, name='exam-details'),
     path('sum/', views.cnt_score, name='待定'),
 
+    path('analyze/', views.exam_analyze, name='exam-analyze'),
+
     path('ranking/', views.update_ranking),
     # path('excel_data/', admin.site.urls),
 ]

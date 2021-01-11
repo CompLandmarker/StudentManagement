@@ -1,34 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>考试列表</title>
-</head>
-<body>
-<a href="{% url 'index' %}">首页</a>
-<table class="table">
-    {% if data_list %}
-        {% for exam in data_list %}
-            <p><a href={% url 'exam:exam-details' exam.id %}>{{ exam.exam_name }}</a></p>
-        {% endfor %}
-        <thead>
-        <tr>
-            <th scope="col">时间</th>
-            <th scope="col">考试</th>
-
-        </tr>
-        </thead>
-        <tbody>
-        {% for exam in data_list %}
+{% extends 'base.html' %}
+{% block body %}
+    <table class="table table-hover">
+        {% if data_list %}
+            {% for exam in data_list %}
+                <p><a href={% url 'exam:exam-details' exam.id %}>{{ exam.exam_name }}</a></p>
+            {% endfor %}
+            <thead>
             <tr>
-                <td>{{ exam.date }}</td>
-                <td>{{ exam.name }}</td>
+                <th scope="col">时间</th>
+                <th scope="col">考试</th>
+                <th scope="col">成绩单详情</th>
+
             </tr>
-        {% endfor %}
-    {% else %}
-        <a>没有数据</a>
-    {% endif %}
-    </tbody>
-</table>
-</body>
-</html>
+            </thead>
+            <tbody>
+            {% for exam in data_list %}
+                <tr>
+                    <td>{{ exam.date }}</td>
+                    <td><p><a href="{% url 'exam:exam-details' exam.id %}" class="text-info" title="点击查看{{ exam.name }}成绩单详情">{{ exam.name }}</a></p></td>
+{#                    <td><a href="{% url 'exam:exam-details' exam.id %}" class="btn btn-secondary btn-lg active"#}
+{#                           role="button" aria-pressed="true">查看详情</a></td>#}
+                <td><p><a href="{% url 'exam:exam-analyze'%}" class="text-info">成绩分析</a></p></td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <a>没有数据</a>
+        {% endif %}
+        </tbody>
+    </table>
+{% endblock %}

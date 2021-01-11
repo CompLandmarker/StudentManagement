@@ -21,12 +21,17 @@ def get_sum_score(scores_list):
     return sum_score
 
 
-
-
 url = r"D:\QQChatNotes\807015872\FileRecv\20201018第一次月考.xls"
+
+
 # url = r"D:\QQChatNotes\807015872\FileRecv\20201113期中考试成绩.xls"
 # url = r"D:\Documents\Workspaces\Excel\测试数据.xlsx"
 # url = r"D:\QQChatNotes\807015872\FileRecv\zhoulian.xlsx"
+
+def excel_sheet(path):
+    return 1
+
+
 DataFrame = excel_sheet(url)
 
 
@@ -190,4 +195,14 @@ def student_list(request):
 
 
 def details(request, pk):
-    return HttpResponse("详情表{}".format(pk))
+    import json
+    exam_list = ExamModel.objects.order_by('date')
+
+    exam_infos = []
+    ranking_infos = []
+    for exam in exam_list:
+        exam_infos.append(exam.name)
+        data = ScoresModel.objects.filter(exam=exam, student_id=pk).first()
+        ranking_infos.append(data.ranking)
+
+    return render(request, 'student/student-details.html', {'exam_infos': exam_infos, 'ranking_infos': ranking_infos, })

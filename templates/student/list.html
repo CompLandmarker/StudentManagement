@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %}学生列表{% endblock %}
+{% block body %}
 <table class="table table-sm">
     <thead>
     <tr>
@@ -34,5 +30,4 @@
     </tr>
     </tbody>
 </table>
-</body>
-</html>
+{% endblock %}

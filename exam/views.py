@@ -65,20 +65,17 @@ def update_ranking(request):
     for i in all_exam:
         get_ranking = ScoresModel.objects.filter(exam__name=i.name).order_by('score_num', 'chinese', 'math', 'english')
         for num, j in enumerate(get_ranking):
-            ScoresModel.objects.filter(exam=i, student=j.student).update(ranking=num+1)
+            ScoresModel.objects.filter(exam=i, student=j.student).update(ranking=num + 1)
 
     return HttpResponse("成绩名次已更新")
 
 
 def exam_details(request, pk):
-    data_list = ScoresModel.objects.all()
-    for i in data_list:
-        tmp_sum = get_sum_score(i)
-        ScoresModel.objects.filter(id=i.id).update(sum_score=tmp_sum)
-    data_list = ScoresModel.objects.filter(exam_id=pk).order_by(
-        '-score_sum', '-chinese', '-math', '-english')
-    # update_sort_index(data_list)
-    data_list = ScoresModel.objects.filter(exam_id=pk).order_by(
-        '-score_sum', '-chinese', '-math', '-english')
-    # print(data_list[0].score_num)
-    return render(request, "exam/exam-details.html", {'data_list': data_list})
+    exam_object = ExamModel.objects.get(id=pk)
+    data = ScoresModel.objects.filter(exam=exam_object).order_by('ranking')
+    return render(request, "exam/exam-details.html", {'data_list': data, 'exam_name': exam_object.name, })
+
+
+def exam_analyze(request):
+    data = 1
+    return render(request, "exam/exam-analyze.html", {'data': data})
