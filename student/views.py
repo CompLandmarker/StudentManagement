@@ -205,4 +205,6 @@ def details(request, pk):
         data = ScoresModel.objects.filter(exam=exam, student_id=pk).first()
         ranking_infos.append(data.ranking)
 
+    exam_infos = json.dumps(exam_infos, ensure_ascii=False)
+    ranking_infos = json.dumps(ranking_infos, ensure_ascii=False)
     return render(request, 'student/student-details.html', {'exam_infos': exam_infos, 'ranking_infos': ranking_infos, })
